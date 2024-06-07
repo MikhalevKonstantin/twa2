@@ -17,7 +17,7 @@ export function TransferTon() {
     <Card>
       <FlexBoxCol>
       <img src={myImage} alt="My Image" />
-        <h3>Transfer TON</h3>
+        <h3>Transfer TONa</h3>
         <FlexBoxRow>
           <label>Amount </label>
           <Input
