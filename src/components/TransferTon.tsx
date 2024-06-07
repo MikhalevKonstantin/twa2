@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { Address, toNano } from "ton";
 import { useTonConnect } from "../hooks/useTonConnect";
 import { Card, FlexBoxCol, FlexBoxRow, Button, Input } from "./styled/styled";
+import myImage from './seal.png';
 
 export function TransferTon() {
   const { sender, connected } = useTonConnect();
@@ -15,6 +16,7 @@ export function TransferTon() {
   return (
     <Card>
       <FlexBoxCol>
+      <img src={myImage} alt="My Image" />
         <h3>Transfer TON</h3>
         <FlexBoxRow>
           <label>Amount </label>

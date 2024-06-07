@@ -2,6 +2,8 @@ import { TonConnectButton } from "@tonconnect/ui-react";
 import { useCounterContract } from "../hooks/useCounterContract";
 import { useTonConnect } from "../hooks/useTonConnect"; //sa
 
+
+
 import {
   Card,
   FlexBoxCol,
