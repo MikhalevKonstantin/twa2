@@ -1,5 +1,5 @@
 import { Center, Spinner } from '@chakra-ui/react';
-import { selectIsOnboardingComplete } from '@core/store/selectors.ts';
+import { selectIsOnboardingComplete } from '@core/store/root/selectors.ts';
 import { useAppSelector } from '@core/storeConfig/store.ts';
 import { useNavigate } from 'react-router-dom';
 import routes from '@core/navigation/routes.ts';

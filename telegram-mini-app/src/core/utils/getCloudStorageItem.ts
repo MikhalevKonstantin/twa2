@@ -1,6 +1,6 @@
 import WebApp from '@twa-dev/sdk';
 
-const getTCSItem = (key: string) => {
+const getCloudStorageItem = (key: string): Promise<string | undefined> => {
   return new Promise((resolve, reject) => {
     WebApp.CloudStorage.getItem(key, (error, result) => {
       if (error) {
@@ -12,4 +12,4 @@ const getTCSItem = (key: string) => {
   });
 };
 
-export default getTCSItem;
+export default getCloudStorageItem;

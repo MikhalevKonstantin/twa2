@@ -6,7 +6,7 @@ import { useAppSelector } from '@core/storeConfig/store.ts';
 import {
   selectBalance,
   selectIsTutorialComplete,
-} from '@core/store/selectors.ts';
+} from '@core/store/root/selectors.ts';
 import coin from '@core/assets/images/coin.png';
 import daily from '@core/assets/images/daily.png';
 import tasks from '@core/assets/images/tasks.png';

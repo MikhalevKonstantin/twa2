@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { rootStateType } from '@core/store/types.ts';
+import { rootStateType } from '@core/store/root/types.ts';
 
 const rootSlice = createSlice({
   name: 'root',
@@ -7,8 +7,12 @@ const rootSlice = createSlice({
     balance: 5,
     isOnboardingComplete: false,
     isTutorialComplete: false,
+    isTutorialModalOpened: false,
   } as rootStateType,
   reducers: {
+    setRoot(_, { payload }) {
+      return payload;
+    },
     changeBalance(state, { payload }) {
       state.balance += payload;
     },
@@ -17,6 +21,9 @@ const rootSlice = createSlice({
     },
     completeTutorial(state) {
       state.isTutorialComplete = true;
+    },
+    openTutorialModal(state) {
+      state.isTutorialModalOpened = true;
     },
   },
 });

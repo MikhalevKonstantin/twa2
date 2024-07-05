@@ -3,7 +3,7 @@ import { useAppSelector } from '@core/storeConfig/store.ts';
 import {
   selectBalance,
   selectIsTutorialComplete,
-} from '@core/store/selectors.ts';
+} from '@core/store/root/selectors.ts';
 import sendInactiveIcon from '@core/assets/icons/walletButtons/send-inactive.svg';
 import shopInactiveIcon from '@core/assets/icons/walletButtons/shop-inactive.svg';
 import plusInactiveIcon from '@core/assets/icons/walletButtons/plus-inactive.svg';
@@ -61,8 +61,11 @@ const WalletPage = () => {
           borderRadius={12}
           p={3}
           mb={3}
-          justifyContent="flex-end"
+          justifyContent="space-between"
         >
+          <Text fontWeight={600} pl={4}>
+            TON
+          </Text>
           <TonConnectButton />
         </Flex>
         <Flex

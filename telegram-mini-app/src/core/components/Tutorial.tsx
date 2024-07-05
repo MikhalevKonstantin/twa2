@@ -55,7 +55,7 @@ const Tutorial = ({ steps, currentStep, opacity }: TutorialProps) => {
           top={circlePosition.y + 50}
           w="100%"
         >
-          <Text color="white" textAlign="center" w={137}>
+          <Text color="white" textAlign="center" w={137} opacity={opacity}>
             {steps[currentStep].text}
           </Text>
         </Box>

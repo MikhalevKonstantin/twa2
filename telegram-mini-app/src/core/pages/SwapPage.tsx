@@ -15,7 +15,7 @@ import spratImage from '@core/assets/images/sprat.png';
 import WebApp from '@twa-dev/sdk';
 import { TabsContext } from '@core/navigation/HeaderTemplate.tsx';
 import { useAppSelector } from '@core/storeConfig/store.ts';
-import { selectBalance } from '@core/store/selectors.ts';
+import { selectBalance } from '@core/store/root/selectors.ts';
 
 const spratPrice = 5;
 
@@ -39,7 +39,7 @@ const SwapPage = () => {
       <Button
         bg={Number.parseFloat(inputValue) > balance ? 'gray' : '#007AFF'}
         position="absolute"
-        bottom={6}
+        bottom={4}
         color="white"
         w="100%"
         disabled={Number.parseFloat(inputValue) > 5}

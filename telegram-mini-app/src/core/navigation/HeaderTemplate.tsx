@@ -13,13 +13,16 @@ import {
 import { createContext, useEffect, useMemo, useState } from 'react';
 import Tutorial from '@core/components/Tutorial.tsx';
 import { useAppDispatch, useAppSelector } from '@core/storeConfig/store.ts';
-import { selectIsTutorialComplete } from '@core/store/selectors.ts';
+import {
+  selectIsTutorialComplete,
+  selectIsTutorialModalOpened,
+} from '@core/store/root/selectors.ts';
 import ReactModal from 'react-modal';
 import homeBg from '@core/assets/images/home-bg.png';
 import buttonImage from '@core/assets/icons/button1.svg';
 import { Outlet, useNavigate } from 'react-router-dom';
 import routes from '@core/navigation/routes.ts';
-import { rootActions } from '@core/store/slice.ts';
+import { rootActions } from '@core/store/root/slice.ts';
 
 export const TabsContext = createContext<any>(null);
 
@@ -38,14 +41,18 @@ const HeaderTemplate = () => {
   const [isTutorialOpen, setIsTutorialOpen] = useState(false);
   const [currentStep, setCurrentStep] = useState(0);
   const isTutorialCompleted = useAppSelector(selectIsTutorialComplete);
+  const isTutorialModalOpened = useAppSelector(selectIsTutorialModalOpened);
   useEffect(() => {
     if (!isTutorialCompleted) {
       setIsTutorialOpen(true);
     } else {
       setIsTutorialOpen(false);
-      setTimeout(() => {
-        setIsEndModalOpen(true);
-      }, 5000);
+      if (!isTutorialModalOpened) {
+        setTimeout(() => {
+          setIsEndModalOpen(true);
+          dispatch(rootActions.openTutorialModal());
+        }, 5000);
+      }
     }
   }, [isTutorialCompleted]);
   const steps = useMemo(() => {
@@ -162,7 +169,7 @@ const HeaderTemplate = () => {
                 zIndex={1}
                 px="2.5px"
               >
-                <Tab w="50%" userSelect="none">
+                <Tab w="50%" userSelect="none" disabled={!isTutorialCompleted}>
                   Home
                 </Tab>
                 <Tab w="50%" userSelect="none" className="step-3">
@@ -244,8 +251,8 @@ const HeaderTemplate = () => {
           />
           <Center flexDirection="column" h="100%" className="step-2">
             <Text fontSize={16} px={4} textAlign="center">
-              <Text fontWeight={600}>You complete the tutorial!</Text> Check
-              some tasks in the wallet tab
+              <b>You complete the tutorial!</b> Check some tasks in the wallet
+              tab
             </Text>
           </Center>
         </Box>
