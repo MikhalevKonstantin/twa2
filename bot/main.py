@@ -212,7 +212,9 @@ async def show_referral_info(update: Update, context: ContextTypes.DEFAULT_TYPE)
 
     bot_username = (await context.bot.get_me()).username
 
-    text = f"Invite friends with your referral link:\n<code>https://t.me/{bot_username}?start={user.id}</code>"
+    invite_link = f"https://t.me/{bot_username}?start={user.id}"
+
+    text = f"Invite friends with your referral link:\n<code>{invite_link}</code>"
 
     # Retrieve information about user's referrer
     referrer = await get_user_name(context.user_data.get("referrer_id"))
@@ -236,6 +238,7 @@ async def show_referral_info(update: Update, context: ContextTypes.DEFAULT_TYPE)
                 text+= f"\n{referral_name}"
 
     buttons = [
+        [InlineKeyboardButton(text="👥 Share invite link", url=f"tg://msg_url?url={invite_link}")],
         [InlineKeyboardButton(text="🐶 Open the game", web_app=WebAppInfo(url=WEBAPP_URL))],
         [InlineKeyboardButton(text="Back", callback_data="menu")],
     ]
