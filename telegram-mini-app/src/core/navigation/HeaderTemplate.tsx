@@ -51,7 +51,7 @@ const HeaderTemplate = () => {
         setTimeout(() => {
           setIsEndModalOpen(true);
           dispatch(rootActions.openTutorialModal());
-        }, 5000);
+        }, 2000);
       }
     }
   }, [isTutorialCompleted]);

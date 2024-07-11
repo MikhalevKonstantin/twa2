@@ -39,7 +39,7 @@ const SwapPage = () => {
       <Button
         bg={Number.parseFloat(inputValue) > balance ? 'gray' : '#007AFF'}
         position="absolute"
-        bottom={4}
+        bottom={6}
         color="white"
         w="100%"
         disabled={Number.parseFloat(inputValue) > 5}

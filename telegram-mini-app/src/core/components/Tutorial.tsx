@@ -39,7 +39,7 @@ const Tutorial = ({ steps, currentStep, opacity }: TutorialProps) => {
     })();
   }, [currentStep]);
   return (
-    <Box position="absolute" top={0} left={0} zIndex={2}>
+    <Box position="absolute" top={0} left={0} zIndex={50}>
       <Circle
         position="absolute"
         left={circlePosition.x - 50}
@@ -55,7 +55,7 @@ const Tutorial = ({ steps, currentStep, opacity }: TutorialProps) => {
           top={circlePosition.y + 50}
           w="100%"
         >
-          <Text color="white" textAlign="center" w={137} opacity={opacity}>
+          <Text color="white" textAlign="center" w={137}>
             {steps[currentStep].text}
           </Text>
         </Box>
@@ -67,7 +67,7 @@ const Tutorial = ({ steps, currentStep, opacity }: TutorialProps) => {
         xmlns="http://www.w3.org/2000/svg"
         opacity={opacity}
         style={{
-          transition: 'linear 0.5s opacity',
+          transition: 'linear 0.2s opacity',
         }}
       >
         <defs>

@@ -13,6 +13,7 @@ import { useEffect, useState } from 'react';
 import WebApp from '@twa-dev/sdk';
 import { rootActions } from '@core/store/root/slice.ts';
 import getCloudStorageItem from '@core/utils/getCloudStorageItem.ts';
+import QuizPage from '@core/pages/QuizPage.tsx';
 
 const router = createBrowserRouter([
   {
@@ -40,6 +41,10 @@ const router = createBrowserRouter([
         element: <SwapPage />,
       },
     ],
+  },
+  {
+    path: routes.quiz,
+    element: <QuizPage />,
   },
 ]);
 

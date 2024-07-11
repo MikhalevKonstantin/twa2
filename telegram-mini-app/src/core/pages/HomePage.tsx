@@ -1,4 +1,4 @@
-import { Box, Center, Flex, Image, Text } from '@chakra-ui/react';
+import { Box, Center, Circle, Flex, Image, Text } from '@chakra-ui/react';
 import homeBg from '@core/assets/images/home-bg.png';
 import house from '@core/assets/images/house.png';
 import Carpet from '@core/components/Carpet.tsx';
@@ -10,10 +10,16 @@ import {
 import coin from '@core/assets/images/coin.png';
 import daily from '@core/assets/images/daily.png';
 import tasks from '@core/assets/images/tasks.png';
+import { useNavigate } from 'react-router-dom';
+import routes from '@core/navigation/routes.ts';
 
 const HomePage = () => {
   const isTutorialCompleted = useAppSelector(selectIsTutorialComplete);
   const balance = useAppSelector(selectBalance);
+  const navigate = useNavigate();
+  const navigateQuiz = () => {
+    navigate(routes.quiz);
+  };
   return (
     <Box
       className="tab-content"
@@ -22,7 +28,7 @@ const HomePage = () => {
       position="relative"
       overflow="hidden"
     >
-      <Box position="absolute" top={0} left={0} pt={4} pl={4}>
+      <Box position="absolute" top={0} left={0} pt={4} pl={4} zIndex={20}>
         <Flex alignItems="center" position="relative">
           <Box position="absolute" top={0} left={0}>
             <Image src={coin} />
@@ -37,7 +43,7 @@ const HomePage = () => {
             className="modal-shadow"
             h="fit-content"
           >
-            <Text>{balance}</Text>
+            <Text>{balance.toFixed(2)}</Text>
           </Box>
         </Flex>
         <Flex flexDirection="column" alignItems="center" pt={5}>
@@ -46,10 +52,40 @@ const HomePage = () => {
             Daily bonus
           </Text>
         </Flex>
-        <Flex flexDirection="column" alignItems="center" pt={3}>
+        <Flex
+          flexDirection="column"
+          alignItems="center"
+          pt={3}
+          onClick={navigateQuiz}
+          position="relative"
+        >
+          <Circle
+            pos="absolute"
+            size={3}
+            bg="#FFE869"
+            top={5}
+            style={{
+              boxShadow: '0px 0px 15px 10px #FFE869',
+            }}
+            className="opacity-pulse"
+          />
           <Image src={tasks} />
           <Text fontSize={10} fontWeight={500} pt={1}>
-            Tasks
+            Quiz
+          </Text>
+          <Text
+            fontSize={14}
+            fontWeight={700}
+            color="gray.500"
+            position="absolute"
+            left={50}
+            bottom={-20}
+            w={150}
+            style={{
+              transform: 'rotate(-30deg)',
+            }}
+          >
+            Try to touch Tonchi
           </Text>
         </Flex>
       </Box>

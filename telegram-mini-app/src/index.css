@@ -10,3 +10,31 @@
 .modal-shadow {
     box-shadow: 0 4px 4px 0 #00000040;
 }
+.prevent-select {
+    -webkit-user-select: none; /* Safari */
+    -ms-user-select: none; /* IE 10 and IE 11 */
+    user-select: none; /* Standard syntax */
+}
+@keyframes red-pulse {
+    0%   {background-color: white;}
+    50%  {background-color: red;}
+    100% {background-color: white;}
+}
+@keyframes green-pulse {
+    0%   {background-color: white;}
+    100% {background-color: green;}
+}
+@keyframes opacity-pulse {
+    0%   {opacity: 1}
+    50% {opacity: 0}
+    100% {opacity: 1}
+}
+.red-pulse {
+    animation: red-pulse 1s linear;
+}
+.green-pulse {
+    animation: green-pulse 1s linear;
+}
+.opacity-pulse {
+    animation: opacity-pulse 3s ease infinite;
+}

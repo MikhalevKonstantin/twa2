@@ -3,6 +3,8 @@ import styled from '@emotion/styled';
 import { useNavigate } from 'react-router-dom';
 import WebApp from '@twa-dev/sdk';
 import { useAppDispatch } from '@core/storeConfig/store.ts';
+import routes from '@core/navigation/routes.ts';
+import rootThunks from '@core/store/root/thunks.ts';
 import { rootActions } from '@core/store/root/slice.ts';
 
 interface OnboardingProps {
@@ -129,14 +131,15 @@ const OnboardingPage = () => {
         setButtonText('Let’s start!');
         break;
       case 4:
+        dispatch(rootActions.completeOnboarding());
         setTimeout(() => {
           newStep++;
           setStep(newStep);
         }, 10);
+        createUser();
         setTimeout(() => {
-          dispatch(rootActions.completeOnboarding());
-          navigate('/home');
-        }, 3000);
+          navigate(routes.home);
+        }, 2000);
         break;
       default:
         break;
@@ -144,7 +147,35 @@ const OnboardingPage = () => {
   };
 
   const toHome = () => {
-    navigate('/home');
+    navigate(routes.home);
+  };
+
+  const createUser = async () => {
+    const user = WebApp.initDataUnsafe.user;
+    if (!user) return;
+    await dispatch(
+      rootThunks.postUser({
+        tg_id: user?.id,
+        body: {
+          first_entry_dt: new Date().toISOString(),
+          last_entry_dt: new Date().toISOString(),
+          tg_account: {
+            uid: user?.id,
+            is_premium: !!user?.is_premium,
+            default_lang: user?.language_code || 'en',
+          },
+          user: {
+            onboarding_is_done: true,
+            balance: 5,
+            items: [
+              {
+                uid: 0,
+              },
+            ],
+          },
+        },
+      })
+    );
   };
 
   return (

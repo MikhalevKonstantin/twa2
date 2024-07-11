@@ -4,13 +4,11 @@ import {
   ErrorResponseType,
   ErrorType,
   IAxiosResponse,
-} from './types';
-import WebApp from '@twa-dev/sdk';
+} from './types.ts';
 
 export const defaultAxios = axios.create({
   baseURL: import.meta.env.VITE_API_URL,
   headers: {
-    Authorization: WebApp.initData,
     'Content-Type': 'application/json',
   },
 });

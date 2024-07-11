@@ -22,3 +22,9 @@ export const selectIsTutorialModalOpened = createSelector(
   selectRoot,
   (state) => state.isTutorialComplete
 );
+
+export const selectUser = createSelector(selectRoot, (state) => state.user);
+export const selectRequestStatus = createSelector(
+  selectRoot,
+  (state) => state.requestStatus
+);

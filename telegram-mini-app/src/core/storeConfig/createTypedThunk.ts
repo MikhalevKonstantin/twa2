@@ -1,7 +1,7 @@
-import { IAxiosResponse } from './types';
 import { createAsyncThunk } from '@reduxjs/toolkit';
+import { IAxiosResponse } from './types.ts';
 
-const createTypedThunk: any = <ReqType, RespType>(
+const createTypedThunk = <ReqType, RespType>(
   name: string,
   request: (body: ReqType) => Promise<IAxiosResponse<RespType>>
 ) => {
@@ -11,9 +11,10 @@ const createTypedThunk: any = <ReqType, RespType>(
     if (error) {
       console.log(error);
       return rejectWithValue(error);
-     }
+    }
 
     return data;
   });
 };
+
 export default createTypedThunk;

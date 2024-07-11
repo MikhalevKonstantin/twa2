@@ -17,7 +17,13 @@ const Carpet = ({ isTutorialCompleted }: CarpetProps) => {
       {isTutorialCompleted ? (
         <TonchiCatAppear />
       ) : (
-        <Image src={plus} position="absolute" ml={6} pb={2} />
+        <Image
+          src={plus}
+          position="absolute"
+          ml={6}
+          pb={2}
+          className="prevent-select"
+        />
       )}
     </Center>
   );
