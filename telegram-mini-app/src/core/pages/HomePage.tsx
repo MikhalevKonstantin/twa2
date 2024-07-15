@@ -85,7 +85,9 @@ const HomePage = () => {
               transform: 'rotate(-30deg)',
             }}
           >
-            Try to touch Tonchi
+            Press. Hold. Close your eyes and smile.
+            <br />
+            Just Purrrfect...
           </Text>
         </Flex>
       </Box>
