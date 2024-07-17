@@ -4,7 +4,6 @@ import { useNavigate } from 'react-router-dom';
 import WebApp from '@twa-dev/sdk';
 import { useAppDispatch } from '@core/storeConfig/store.ts';
 import routes from '@core/navigation/routes.ts';
-import rootThunks from '@core/store/root/thunks.ts';
 import { rootActions } from '@core/store/root/slice.ts';
 
 interface OnboardingProps {
@@ -136,7 +135,7 @@ const OnboardingPage = () => {
           newStep++;
           setStep(newStep);
         }, 10);
-        createUser();
+        // createUser();
         setTimeout(() => {
           navigate(routes.home);
         }, 2000);
@@ -146,42 +145,42 @@ const OnboardingPage = () => {
     }
   };
 
-  const toHome = () => {
+  const navigateHome = () => {
     navigate(routes.home);
   };
 
-  const createUser = async () => {
-    const user = WebApp.initDataUnsafe.user;
-    if (!user) return;
-    await dispatch(
-      rootThunks.postUser({
-        tg_id: user?.id,
-        body: {
-          first_entry_dt: new Date().toISOString(),
-          last_entry_dt: new Date().toISOString(),
-          tg_account: {
-            uid: user?.id,
-            is_premium: !!user?.is_premium,
-            default_lang: user?.language_code || 'en',
-          },
-          user: {
-            onboarding_is_done: true,
-            balance: 5,
-            items: [
-              {
-                uid: 0,
-              },
-            ],
-          },
-        },
-      })
-    );
-  };
+  // const createUser = async () => {
+  //   const user = WebApp.initDataUnsafe.user;
+  //   if (!user) return;
+  //   await dispatch(
+  //     rootThunks.postUser({
+  //       tg_id: user?.id,
+  //       body: {
+  //         first_entry_dt: new Date().toISOString(),
+  //         last_entry_dt: new Date().toISOString(),
+  //         tg_account: {
+  //           uid: user?.id,
+  //           is_premium: !!user?.is_premium,
+  //           default_lang: user?.language_code || 'en',
+  //         },
+  //         user: {
+  //           onboarding_is_done: true,
+  //           balance: 5,
+  //           items: [
+  //             {
+  //               uid: 0,
+  //             },
+  //           ],
+  //         },
+  //       },
+  //     })
+  //   );
+  // };
 
   return (
     <Container step={step}>
       <TopTonchiFlippedImage
-        onClick={toHome}
+        onClick={navigateHome}
         step={step}
         src={'tonchi_flipped.png'}
       />

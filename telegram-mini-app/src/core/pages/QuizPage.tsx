@@ -4,14 +4,13 @@ import WebApp from '@twa-dev/sdk';
 import routes from '@core/navigation/routes.ts';
 import {
   Box,
+  Button,
   Center,
   Flex,
   Image,
   Modal,
   ModalBody,
-  ModalCloseButton,
   ModalContent,
-  ModalHeader,
   ModalOverlay,
   Text,
 } from '@chakra-ui/react';
@@ -118,9 +117,25 @@ const QuizPage = () => {
       <Modal isOpen={isModalOpen} onClose={onCloseModal}>
         <ModalOverlay />
         <ModalContent>
-          <ModalHeader>{quizSteps[stepNumber].title}</ModalHeader>
-          <ModalCloseButton />
-          <ModalBody pb={4}>{quizSteps[stepNumber].text}</ModalBody>
+          <ModalBody pb={4}>
+            <Center pt={5} pb={4}>
+              <Image
+                src={cardsList[quizSteps[stepNumber].rightCardIndex].icon}
+                w="80px"
+              />
+            </Center>
+            <Text fontSize="20px" fontWeight={600} textAlign="center" pb={4}>
+              {quizSteps[stepNumber].title}
+            </Text>
+            <Text fontSize="16px" pb={5}>
+              {quizSteps[stepNumber].text}
+            </Text>
+            <Center pb={4} onClick={onCloseModal}>
+              <Button bg="#007AFF" color="white">
+                Continue
+              </Button>
+            </Center>
+          </ModalBody>
         </ModalContent>
       </Modal>
     </>

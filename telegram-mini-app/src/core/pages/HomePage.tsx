@@ -1,4 +1,4 @@
-import { Box, Center, Circle, Flex, Image, Text } from '@chakra-ui/react';
+import { Box, Center, Flex, Image, Text } from '@chakra-ui/react';
 import homeBg from '@core/assets/images/home-bg.png';
 import house from '@core/assets/images/house.png';
 import Carpet from '@core/components/Carpet.tsx';
@@ -9,9 +9,11 @@ import {
 } from '@core/store/root/selectors.ts';
 import coin from '@core/assets/images/coin.png';
 import daily from '@core/assets/images/daily.png';
-import tasks from '@core/assets/images/tasks.png';
+import quiz from '@core/assets/images/quiz.png';
 import { useNavigate } from 'react-router-dom';
 import routes from '@core/navigation/routes.ts';
+import { motion } from 'framer-motion';
+import { useEffect, useState } from 'react';
 
 const HomePage = () => {
   const isTutorialCompleted = useAppSelector(selectIsTutorialComplete);
@@ -20,6 +22,14 @@ const HomePage = () => {
   const navigateQuiz = () => {
     navigate(routes.quiz);
   };
+
+  const [isQuizStir, setIsQuizStir] = useState(false);
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      setIsQuizStir(true);
+    }, 12000);
+    return () => clearTimeout(timeout);
+  }, []);
   return (
     <Box
       className="tab-content"
@@ -59,35 +69,19 @@ const HomePage = () => {
           onClick={navigateQuiz}
           position="relative"
         >
-          <Circle
-            pos="absolute"
-            size={3}
-            bg="#FFE869"
-            top={5}
-            style={{
-              boxShadow: '0px 0px 15px 10px #FFE869',
-            }}
-            className="opacity-pulse"
-          />
-          <Image src={tasks} />
-          <Text fontSize={10} fontWeight={500} pt={1}>
-            Quiz
-          </Text>
-          <Text
-            fontSize={14}
-            fontWeight={700}
-            color="gray.500"
-            position="absolute"
-            left={50}
-            bottom={-20}
-            w={150}
-            style={{
-              transform: 'rotate(-30deg)',
+          <motion.div
+            animate={isQuizStir ? {} : { rotate: [0, -15, 0, 15, 0] }}
+            transition={{
+              duration: 0.3,
+              repeat: Infinity,
+              repeatType: 'mirror',
+              repeatDelay: 3,
             }}
           >
-            Press. Hold. Close your eyes and smile.
-            <br />
-            Just Purrrfect...
+            <Image src={quiz} />
+          </motion.div>
+          <Text fontSize={10} fontWeight={500} pt={1}>
+            Quiz
           </Text>
         </Flex>
       </Box>
